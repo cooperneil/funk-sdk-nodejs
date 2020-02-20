@@ -5,7 +5,7 @@ fun(k) SDK in Node.js
 
 Can use from any directory. Currently requires cloud build before deploy step (until buildpacks).
 
-e.g.
+e.g. to build an http funk:
 
 ```
 > mkdir playground
@@ -13,7 +13,11 @@ e.g.
 > kn funk init nodejs
 > kn funk function create hello-nodejs --http=true
 > cd funks/hello-nodejs
-> gcloud builds submit --tag gcr.io/neilcooper-knative-dev2/hello-nodejs
+> gcloud builds submit --tag gcr.io/<your-project>/hello-nodejs
 > cd ../..
 > kn funk deploy
+```
+Then curl your http funk:
+```
+curl -v -H "Host: funk-hello-nodejs.default.example.com" <your IP>
 ```
