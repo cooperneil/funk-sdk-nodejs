@@ -1,0 +1,18 @@
+apiVersion: funk.knative.dev/v1alpha1
+kind: SDKInit
+metadata:
+  name: funk-nodejs-sdk
+spec:
+  steps:
+    - name: "Creating funk directory"
+      mkdir: "funks/{{.LowerFunkName}}" 
+    # TODO: event handling templates
+    - name: "Create service yaml"
+      template:
+        source: "templates/funk/service.yaml"
+        dest: "config/{{.LowerFunkName}}_service.yaml"
+    - name: "Create trigger yaml"
+      template:
+        source: "templates/funk/trigger.yaml"
+        dest: "config/{{.LowerFunkName}}_trigger.yaml"
+

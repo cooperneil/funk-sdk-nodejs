@@ -1,0 +1,6 @@
+apiVersion: funk.knative.dev/v1alpha1
+kind: Type
+metadata:
+  name: funk-nodejs-sdk
+spec:
+  # TODO

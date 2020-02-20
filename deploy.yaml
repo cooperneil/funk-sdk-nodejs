@@ -1,0 +1,12 @@
+apiVersion: funk.knative.dev/v1alpha1
+kind: SDKInit
+metadata:
+  name: funk-nodejs-sdk-deploy
+spec:
+  steps:
+    # TODO(neilcooper): Need to
+    # replicate for each function
+    # - name: "Cloud Build and upload container"
+    #  exec: "gcloud builds submit --tag {{.GcrLocation}}/{{.LowerFunkName}}"
+    - name: "Build Functions and Deploy Functions/Triggers"
+      exec: "ko apply -f config"
