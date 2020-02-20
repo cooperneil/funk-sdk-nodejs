@@ -12,12 +12,10 @@ e.g. to build an http funk:
 > cd playground
 > kn funk init nodejs
 > kn funk function create hello-nodejs --http=true
-> cd funks/hello-nodejs
-> gcloud builds submit --tag gcr.io/<your-project>/hello-nodejs
-> cd ../..
+> gcloud builds submit funks/hello-nodejs --tag $KO_DOCKER_REPO/hello-nodejs
 > kn funk deploy
 ```
 Then curl your http funk:
 ```
-curl -v -H "Host: funk-hello-nodejs.default.example.com" <your IP>
+> curl -v -H "Host: funk-hello-nodejs.default.example.com" <your IP>
 ```
