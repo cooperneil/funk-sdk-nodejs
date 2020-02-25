@@ -6,7 +6,23 @@ spec:
   steps:
     - name: "Creating funk directory"
       mkdir: "funks/{{.LowerFunkName}}" 
-    # TODO: event handling templates
+    # TODO: remove Dockerfile and .dockerignore once buildpacks integrated
+    - name: "Create Dockerfile"
+      template:
+        source: "templates/funk/event_Dockerfile.tmpl"
+        dest: "funks/{{.LowerFunkName}}/Dockerfile"
+    - name: "Create .dockerignore"
+      template:
+        source: "templates/funk/dockerignore.tmpl"
+        dest: "funks/{{.LowerFunkName}}/.dockerignore"    
+    - name: "Create package.json"
+      template:
+        source: "templates/funk/event_package.json.tmpl"
+        dest: "funks/{{.LowerFunkName}}/package.json"
+    - name: "Create funk index.js"
+      template:
+        source: "templates/funk/event_index.js.tmpl"
+        dest: "funks/{{.LowerFunkName}}/index.js"
     - name: "Create service yaml"
       template:
         source: "templates/funk/service.yaml"

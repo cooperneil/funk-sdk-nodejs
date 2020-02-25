@@ -7,5 +7,5 @@ spec:
   template:
     spec:
       containers:
-        # TODO: - image: {{.GcrLocation}}/{{.LowerFunkName}}
-        - image: gcr.io/neilcooper-knative-dev2/{{.LowerFunkName}} 
+        # TODO: - image: $KO_DOCKER_REPO/{{.LowerFunkName}}
+        - image: us.gcr.io/neilcooper-knative-dev2/{{.LowerFunkName}} 

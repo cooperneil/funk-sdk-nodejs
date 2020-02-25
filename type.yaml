@@ -4,3 +4,6 @@ metadata:
   name: funk-nodejs-sdk
 spec:
   # TODO
+  template:
+    source: "templates/type/type.ts.tmpl"
+    dest: "types/{{.TypeName}}.ts"

@@ -1,0 +1,46 @@
+const express = require("express");
+const app = express();
+
+const v1 = require("cloudevents-sdk/v1");
+const structured1 = new v1.StructuredHTTPReceiver();
+
+app.use((req, res, next) => {
+  let data="";
+
+  req.setEncoding("utf8");
+  req.on("data", function(chunk) {
+     data += chunk;
+  });
+
+  req.on("end", function() {
+      req.body = data;
+      next();
+  });
+});
+
+app.post("/", function (req, res) {
+  console.log(req.headers);
+  console.log(req.body);
+
+  try {
+    let myevent = structured1.parse(req.body, req.headers);
+    console.log("Accepted event :");
+    console.log(JSON.stringify(myevent.format(), null, 2));
+
+    // TODO(you): Handle the event.
+
+    res.status(200)
+          .json(myevent.format());
+
+  } catch (err) {
+    console.error(err);
+    res.status(415)
+          .header("Content-Type", "application/json")
+          .send(JSON.stringify(err));
+  }
+});
+
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log('CloudEvent Node.js listening on port', port);
+});
