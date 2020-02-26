@@ -2,6 +2,8 @@ apiVersion: eventing.knative.dev/v1alpha1
 kind: Trigger
 metadata:
   name: funk-trigger-{{.LowerFunkName}}
+  labels:
+    funk.knative.dev/function: {{.LowerFunkName}}
 spec:
   broker: default
   filter:
