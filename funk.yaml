@@ -23,6 +23,10 @@ spec:
       template:
         source: "templates/funk/event_index.js.tmpl"
         dest: "funks/{{.LowerFunkName}}/index.js"
+    - name: "Create funk.js"
+      template:
+        source: "templates/funk/event_funk.js.tmpl"
+        dest: "funks/{{.LowerFunkName}}/funk.js"
     - name: "Create service yaml"
       template:
         source: "templates/funk/service.yaml"

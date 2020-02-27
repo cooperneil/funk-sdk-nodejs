@@ -4,6 +4,8 @@ const app = express();
 const v1 = require("cloudevents-sdk/v1");
 const structured1 = new v1.StructuredHTTPReceiver();
 
+var funk = require("./funk");
+
 app.use((req, res, next) => {
   let data="";
 
@@ -24,10 +26,9 @@ app.post("/", function (req, res) {
 
   try {
     let myevent = structured1.parse(req.body, req.headers);
-    console.log("Accepted event :");
-    console.log(JSON.stringify(myevent.format(), null, 2));
 
-    // TODO(you): Handle the event.
+    // Call the funk receiver
+    funk.onEvent(myevent.getData(), myevent);
 
     res.status(200)
           .json(myevent.format());

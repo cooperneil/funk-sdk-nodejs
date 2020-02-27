@@ -4,9 +4,8 @@ metadata:
   name: funk-nodejs-sdk-deploy
 spec:
   steps:
-    # TODO(neilcooper): Need to
-    # replicate for each function
+    # TODO: Need to replicate for each function
     # - name: "Cloud Build and upload container"
-    #  exec: "gcloud builds submit --tag {{.GcrLocation}}/{{.LowerFunkName}}"
+    #  exec: "gcloud builds submit funks/{{.LowerFunkName}} --tag $KO_DOCKER_REPO/{{.LowerFunkName}}"
     - name: "Build Functions and Deploy Functions/Triggers"
       exec: "ko apply -f config"
