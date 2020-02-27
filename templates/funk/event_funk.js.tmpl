@@ -6,7 +6,7 @@ module.exports =
      * @param event the full CloudEvent
      */
     onEvent: function (data, event) {
-        console.log("onEvent() in accepted {{.InType.UpCaseTypeName}} event:", data);
+        console.log("onEvent() accepted {{.InType.UpCaseTypeName}} event:", data);
         console.log(JSON.stringify(event.format(), null, 2));
 
         // TODO(you): Handle the event.
